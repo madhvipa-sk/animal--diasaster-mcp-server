@@ -1,0 +1,14 @@
+animal-disaster-mcp-server/
+│
+├── animal_disaster_mcp_server.py      # Main MCP server code
+├── requirements.txt                   # Python dependencies
+├── README.md                          # Project description, setup & demo instructions
+├── setup.sh & setup.bat               # Auto-install scripts for Unix/Windows
+├── test_server.py                     # Test/demo script
+├── .env.template                      # (Optional) environment variables
+├── architecture.png                   # (Optional) data flow diagram
+│
+├── Procfile                           # Heroku deploy
+├── vercel.json                        # Vercel deploy
+├── Dockerfile                         # Container deploy (optional)
+└── .github/workflows/deploy.yml       # CI/CD (optional)

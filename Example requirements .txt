@@ -1,0 +1,5 @@
+fastapi
+ultralytics
+torch
+requests
+uvicorn

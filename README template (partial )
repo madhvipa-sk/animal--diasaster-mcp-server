@@ -1,0 +1,5 @@
+# 🐄 Animal Behavior Disaster Predictor MCP Server
+
+Detects disaster risk by analyzing animal behavior in images, powered by YOLO and FastAPI.
+
+## 🚀 Quick Start (Local)

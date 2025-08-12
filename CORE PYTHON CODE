@@ -1,0 +1,34 @@
+# animal_disaster_mcp_server.py
+
+import requests
+from fastapi import FastAPI, Request
+from pydantic import BaseModel
+from ultralytics import YOLO
+
+app = FastAPI()
+model = YOLO('yolov8n.pt')  # Replace with animal/farm fine-tuned weights if available
+
+class ImageRequest(BaseModel):
+    image_url: str
+    location: str
+
+def analyze_image(image_url):
+    response = requests.get(image_url)
+    with open("tmp.jpg", "wb") as f:
+        f.write(response.content)
+    results = model("tmp.jpg")
+    animal_count = sum(1 for r in results if r['class'] in ['cow', 'goat', 'dog', 'horse'])
+    # Placeholder behavior logic
+    risk = "high" if animal_count >= 5 else "medium" if animal_count >= 2 else "low"
+    return {
+        "animal_count": animal_count,
+        "risk_level": risk,
+        "details": "Risk is high if abnormal animal gatherings detected"
+    }
+
+@app.post("/analyze")
+def api_analyze(req: ImageRequest):
+    output = analyze_image(req.image_url)
+    return {"location": req.location, "behavioral_analysis": output}
+
+# For MCP server auto-discovery, optionally expose a /.well-known/mcp-server endpoint

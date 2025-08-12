@@ -1,0 +1,9 @@
+Commit and push repo to GitHub.
+
+Create on Heroku:
+
+bash
+heroku create animal-quake-server
+git push heroku main
+heroku open
+Your HTTPS endpoint: https://animal-quake-server.herokuapp.com/analyze
